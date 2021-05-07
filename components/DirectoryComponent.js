@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { StyleSheet} from 'react-native';
 import { CAMPSITES} from '../shared/campsites';
-import { render } from 'react-dom';
 
 class Directory extends Component {
 
