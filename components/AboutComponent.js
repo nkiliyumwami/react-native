@@ -6,7 +6,7 @@ import { PARTNERS } from '../shared/partners';
 
 
 
-//Task 3 Week 1
+//Task 3 Assignment Week 1
 function Mission () {
     return(
         <Card title='Our Mission'>

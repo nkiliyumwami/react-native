@@ -3,6 +3,8 @@ import { ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Text } from 'react-native';
 
+
+//Task 1 & 2 Assignment Week 1
  class Contact extends Component {
 
     static navigationOptions = {
