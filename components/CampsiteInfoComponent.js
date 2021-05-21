@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View,ScrollView, FlatList, Modal, Button, StyleSheet } from 'react-native';
-import { Card, Icon } from 'react-native-elements';
+import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite } from '../redux/ActionCreators';
@@ -66,7 +66,12 @@ function RenderComments({comments}) {
         return(
             <View style={{margin: 10}}>
                 <Text style={{fontSize: 14}}>{item.text}</Text>
-                <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
+                <Rating
+                    readonly 
+                    imageSize={10} 
+                    style={{alignItems: 'flex-start', paddingVertical:'5%'}}
+                    
+                    />
                 <Text style={{fontSize: 12}}>{`--${item.author}, ${item.date}`}</Text>
             </View>
         );
@@ -86,7 +91,10 @@ function RenderComments({comments}) {
     constructor(props) {
         super(props);
         this.state = {
-            showModal: false
+            showModal: false,
+            rating: 5,
+            author: '',
+            text: ''
         };
     }
     
@@ -95,8 +103,19 @@ function RenderComments({comments}) {
         this.setState({showModal: !this.state.showModal});
     }
 
-    onShowModal() {
-        this.toggleModal()
+    //Week 2 Assign Task 2
+    handleComment(campsiteId) {
+        console.log(JSON.stringify(this.state));
+        this.toggleModal();
+    }
+    //Reset the state
+    resetForm() {
+        this.setState({
+           showModal: false,
+            rating: 5,
+            author: '',
+            text: '' 
+        });
     }
 
     
@@ -122,6 +141,7 @@ function RenderComments({comments}) {
                 <RenderCampsite campsite={campsite} 
                     favorite={this.props.favorites.includes(campsiteId)}
                     markFavorite={() => this.markFavorite(campsiteId)}
+                    //Week 2 Assign Task 1(end)
                     onShowModal={() => this.toggleModal()}
                 />
                 <RenderComments comments={comments} />
@@ -133,15 +153,52 @@ function RenderComments({comments}) {
                     onRequestClose={() => this.toggleModal()}
                 >
                     <View style={styles.modal}>
+                        <Rating
+                            type="star"
+                            ratingCount={5}
+                            imageSize={40}
+                            showRating
+                            onFinishRating={rating => this.setState({rating: rating})}
+                            style={{paddingVertical: 10}}
+                            startingValue={this.state.rating}
+                        />
+                        <Input 
+                            placeholder='Author' 
+                            leftIcon={{type: 'font-awesome', name: 'user-o'}}
+                            leftIconContainerStyle={{paddingRight: 10}}
+                            onChangeText={value => this.setState({author: value})}
+
+
+                        />
+                        <Input
+                            placeholder="Comment"
+                            leftIcon={{type:'font-awesome', name: 'comment-o'}}
+                            leftIconContainerStyle={{paddingRight: 10}}
+                            onChangeText={value => this.setState({comment: value})}
+
+                        />
+                        <View>
+                            <Button
+                                title='Submit'
+                                color='#5637DD'
+                                onPress={() => {
+                                    this.handleComment();
+                                    this.resetForm();
+                                }}
+                            />
+                        </View>
+
                         <View style={{margin: 10}}>
                             <Button
                             onPress={() => {
                                 this.toggleModal();
+                                this.resetForm();
                             }}
                             color='#808080'
                             title='Cancel'
                         />
                         </View>
+                        
                         
                     </View>
                 </Modal>
