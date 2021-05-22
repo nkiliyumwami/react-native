@@ -14,3 +14,6 @@ export const ADD_PARTNERS = 'ADD_PARTNERS';
 export const PARTNERS_FAILED = 'PARTNERS_FAILED';
 
 export const ADD_FAVORITE = 'ADD_FAVORITE';
+
+//Week 2 Assign Task 3
+export const ADD_COMMENT = 'ADD_COMMENT';

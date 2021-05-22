@@ -3,18 +3,22 @@ import { Text, View,ScrollView, FlatList, Modal, Button, StyleSheet } from 'reac
 import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { postFavorite } from '../redux/ActionCreators';
+import { postComment, postFavorite } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
         campsites: state.campsites,
         comments: state.comments,
-        favorites: state.favorites
+        favorites: state.favorites,
+        //Week 2 Assign Task 3
+        comment: state.comment
     };
 };
 
 const mapDispatchToProps = {
-    postFavorite: campsiteId => (postFavorite(campsiteId))
+    postFavorite: campsiteId => (postFavorite(campsiteId)),
+    //Week 2 Assign Task 3
+    postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
 };
 
 function RenderCampsite(props) {
@@ -104,8 +108,10 @@ function RenderComments({comments}) {
     }
 
     //Week 2 Assign Task 2
-    handleComment(campsiteId) {
+    handleComment(campsiteId, rating, author, text) {
         console.log(JSON.stringify(this.state));
+        //Week 2 Assign Task 3
+        postComment(campsiteId, author, rating, text);
         this.toggleModal();
     }
     //Reset the state
