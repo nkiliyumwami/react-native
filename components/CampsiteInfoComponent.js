@@ -11,14 +11,14 @@ const mapStateToProps = state => {
         comments: state.comments,
         favorites: state.favorites,
         //Week 2 Assign Task 3
-        comment: state.comment
+        
     };
 };
 
 const mapDispatchToProps = {
-    postFavorite: campsiteId => (postFavorite(campsiteId)),
+    postFavorite ,//: campsiteId => (postFavorite(campsiteId)),
     //Week 2 Assign Task 3
-    postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
+    postComment  //: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
 };
 
 function RenderCampsite(props) {
@@ -74,7 +74,6 @@ function RenderComments({comments}) {
                     readonly 
                     imageSize={10} 
                     style={{alignItems: 'flex-start', paddingVertical:'5%'}}
-                    
                     />
                 <Text style={{fontSize: 12}}>{`--${item.author}, ${item.date}`}</Text>
             </View>
@@ -108,11 +107,13 @@ function RenderComments({comments}) {
     }
 
     //Week 2 Assign Task 2
-    handleComment(campsiteId, rating, author, text) {
-        console.log(JSON.stringify(this.state));
+    handleComment(campsiteId) {
+        console.log(JSON.stringify(this.state))
         //Week 2 Assign Task 3
-        postComment(campsiteId, author, rating, text);
-        this.toggleModal();
+        console.log(campsiteId, this.state.author, this.state.rating, this.state.text)
+        //Get the dispatch superpower(thunk of redux)
+        this.props.postComment(campsiteId, this.state.rating, this.state.author, this.state.text)
+        this.toggleModal()
     }
     //Reset the state
     resetForm() {
@@ -180,7 +181,7 @@ function RenderComments({comments}) {
                             placeholder="Comment"
                             leftIcon={{type:'font-awesome', name: 'comment-o'}}
                             leftIconContainerStyle={{paddingRight: 10}}
-                            onChangeText={value => this.setState({comment: value})}
+                            onChangeText={value => this.setState({text: value})}
 
                         />
                         <View>
@@ -188,7 +189,7 @@ function RenderComments({comments}) {
                                 title='Submit'
                                 color='#5637DD'
                                 onPress={() => {
-                                    this.handleComment();
+                                    this.handleComment(campsiteId);
                                     this.resetForm();
                                 }}
                             />

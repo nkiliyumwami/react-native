@@ -7,9 +7,11 @@ export const comments = (state = { errMess: null, comments: []}, action) => {
 
         case ActionTypes.COMMENTS_FAILED:
             return {...state, errMess: action.payload};
-            //Week 2 Assign Task 3: Adding a new case:
+            //Week 2 Assign Task 3: Adding a new comment:
         case ActionTypes.ADD_COMMENT:
-            return {...state, errMess: null, comment: action.payload}
+            const comment = action.payload
+            comment.id = state.comments.length
+            return {...state, comments: state.comments.concat(comment)};
 
         default:
             return state;
