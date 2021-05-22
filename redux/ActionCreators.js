@@ -154,6 +154,11 @@ export const addFavorite = campsiteId => ({
     payload: campsiteId
 });
 
+export const deleteFavorite = campsiteId => ({
+    type: ActionTypes.DELETE_FAVORITE,
+    payload: campsiteId
+});
+
 
 //Week 2 Assign Task 3
 //1.A 'thunked' action creator
@@ -162,17 +167,17 @@ export const postComment = (campsiteId, rating, author, text)  => dispatch => {
         campsiteId,
         rating,
         author,
-        text,
-        date: new Date().toISOString()
+        text
     }; 
+    newComment.date = new Date().toISOString();
 
     setTimeout(() => {
-        dispatch(addComment(newComment))
-    }, 2000)
+        dispatch(addComment(newComment));
+    }, 2000);
 }
 
 //2.Standard non-thunked action creator
 export const addComment= comment => ({
     type: ActionTypes.ADD_COMMENT,
     payload: comment
-})
+});
