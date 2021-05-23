@@ -7,7 +7,7 @@ export const comments = (state = { errMess: null, comments: []}, action) => {
 
         case ActionTypes.COMMENTS_FAILED:
             return {...state, errMess: action.payload};
-            //Week 2 Assign Task 3: Adding a new comment:
+            //Week 2 Assign Task 3: Adding a new comment: And add an id to the object(comment)
         case ActionTypes.ADD_COMMENT:
             const comment = action.payload
             comment.id = state.comments.length
