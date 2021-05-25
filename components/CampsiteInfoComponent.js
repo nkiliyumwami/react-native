@@ -32,6 +32,10 @@ function RenderCampsite(props) {
     //Set a gesture
     const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
 
+    //Week 3 Ass Task 3
+    const recognizeComment = ({dx}) => (dx >-200) ? true : false;
+
+
     //Create a pan responder 
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -59,8 +63,11 @@ function RenderCampsite(props) {
                     ],
                     { cancelable: false }
                 );
-            }
+            } else if(recognizeComment(gestureState)) {
+                props.onShowModal()
+            } 
             return true;
+            
         }
     });
 
