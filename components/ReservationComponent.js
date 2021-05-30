@@ -13,7 +13,6 @@ class Reservation extends Component {
             hikeIn: false,
             date: new Date(),
             showCalendar: false,
-            //showModal: false
         };
     }
 
@@ -21,31 +20,16 @@ class Reservation extends Component {
         title: 'Reserve Campsite'
     }
 
-    // toggleModal() {
-    //     this.setState({showModal: !this.state.showModal});
-    // }
-
-    // handleReservation() {
-    //     console.log(JSON.stringify(this.state));
-    //     this.toggleModal();
-    // }
-
-    resetForm() {
-        this.setState({
-            campers: 1,
-            hikeIn: false,
-            date: new Date(),
-            showCalendar: false,
-            //showModal: false
-        });
-    }
-
-    render() {
-        //Create Alert Form 
-        const alertForm = () => {
-            Alert.alert(
+    handleReservation() {
+        console.log(JSON.stringify(this.state));
+        Alert.alert(
                     'Begin Search?',
-                    `Number of Campers: ${this.state.campers} Hike-in: ${this.state.hikeIn} Date: ${this.state.date.toLocaleDateString('en-US')}`,
+                    `
+                    Number of Campers: ${this.state.campers}
+                    Hike-in: ${this.state.hikeIn} 
+                    Date: ${this.state.date.toLocaleDateString('en-US')}
+                    
+                    `,
                     [
                         {
                             text: 'Cancel',
@@ -61,8 +45,18 @@ class Reservation extends Component {
                     
                 );
                 
-        }
+     }
 
+    resetForm() {
+        this.setState({
+            campers: 1,
+            hikeIn: false,
+            date: new Date(),
+            showCalendar: false,
+        });
+    }
+
+    render() {
         return (
             <Animatable.View
                 animation='zoomIn' 
@@ -118,7 +112,7 @@ class Reservation extends Component {
                 )}
                 <View style={styles.formRow}>
                     <Button
-                        onPress={() =>  alertForm()
+                        onPress={() =>  this.handleReservation()
             }
                 
                         title='Search'
@@ -126,33 +120,6 @@ class Reservation extends Component {
                         accessibilityLabel='Tap me to search for available campsites to reserve'
                     />
                 </View>
-                {/* <Modal
-                    animationType={'slide'}
-                    transparent={false}
-                    visible={this.state.showModal}
-                    onRequestClose={() => this.toggleModal()}
-                >
-                    <View style={styles.modal}>
-                        <Text style={styles.modalTitle}>Search Campsite Reservations</Text>
-                        <Text style={styles.modalText}>
-                            Number of Campers: {this.state.campers}
-                        </Text>
-                        <Text style={styles.modalText}>
-                            Hike-In?: {this.state.hikeIn ? 'Yes' : 'No'}
-                        </Text>
-                        <Text style={styles.modalText}>
-                            Date: {this.state.date.toLocaleDateString('en-US')}
-                        </Text>
-                        <Button
-                            onPress={() => {
-                                this.toggleModal();
-                                this.resetForm();
-                            }}
-                            color='#5637DD'
-                            title='Close'
-                        />
-                    </View>
-                </Modal> */}
             </ScrollView>
             </Animatable.View>
             

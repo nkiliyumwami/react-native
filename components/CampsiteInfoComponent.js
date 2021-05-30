@@ -17,9 +17,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    postFavorite ,//: campsiteId => (postFavorite(campsiteId)),
+    postFavorite ,
     //Week 2 Assign Task 3
-    postComment  //: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
+    postComment  
 };
 
 function RenderCampsite(props) {
@@ -33,7 +33,7 @@ function RenderCampsite(props) {
     const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
 
     //Week 3 Ass Task 3
-    const recognizeComment = ({dx}) => (dx >-200) ? true : false;
+    const recognizeComment = ({dx}) => (dx > 200) ? true : false;
 
 
     //Create a pan responder 

@@ -250,7 +250,7 @@ const MainNavigator = createDrawerNavigator(
         About: { 
             screen: AboutNavigator,
             navigationOptions: {
-                drawerLabel: 'Contact Us',
+                drawerLabel: 'About Us',
                 drawerIcon: ({tintColor}) => (
                     <Icon
                         name='info-circle'
