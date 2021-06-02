@@ -24,13 +24,11 @@ class Reservation extends Component {
     handleReservation() {
         console.log(JSON.stringify(this.state));
         Alert.alert(
-                    'Begin Search?',
-                    `
-                    Number of Campers: ${this.state.campers}
-                    Hike-in: ${this.state.hikeIn} 
-                    Date: ${this.state.date.toLocaleDateString('en-US')}
-                    
-                    `,
+    'Begin Search?',
+    `Number of Campers: ${this.state.campers}
+    Hike-in: ${this.state.hikeIn} 
+    Date: ${this.state.date.toLocaleDateString('en-US')}
+    `,
                     [
                         {
                             text: 'Cancel',
